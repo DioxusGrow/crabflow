@@ -53,9 +53,9 @@ fn Home() -> Element {
         model-viewer {
             class: "w-screen h-screen",
             src: "./assets/img/crabflow.glb",
-            ar: true,
+            ar: "",
             "ar-modes": "webxr scene-viewer quick-look",
-            "camera-controls": true,
+            "camera-controls": "",
             "tone-mapping": "neutral",
             poster: "poster.webp",
             "shadow-intensity": "1"
