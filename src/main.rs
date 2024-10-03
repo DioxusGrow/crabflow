@@ -31,8 +31,8 @@ fn App() -> Element {
         // head::Link { rel: "stylesheet", href: MODEL_STYLE }
         // Script{src:"./assets/script.js"}
         Script { src: "https://cdn.tailwindcss.com" }
-        Script { src: "https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js" }
-        // Script { src: "https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.js" }
+        // Script { type: "module", src: "https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js" }
+        Script { type: "module", src: "https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.js" }
         // Script { src: "./assets/model-viewer.min.js" }
         Router::<Route> {}
     }
@@ -49,7 +49,7 @@ fn Blog(id: i32) -> Element {
 #[component]
 fn Home() -> Element {
     let test_style = r#"    
-        spline-viewer {
+        model-viewer {
             width: 400px;
             height: 600px;
             margin: 0 auto;
@@ -57,17 +57,17 @@ fn Home() -> Element {
 
     rsx! {
         style { r#type: "text/tailwindcss", "{test_style}" }
-        // model-viewer {
-        //     class: "w-screen h-screen",
-        //     src: "./assets/img/crabflow.glb",
-        //     ar: true,
-        //     "ar-modes": "webxr scene-viewer quick-look",
-        //     "camera-controls": true,
-        //     "tone-mapping": "neutral",
-        //     poster: "poster.webp",
-        //     "shadow-intensity": "1"
-        // }
-        spline-viewer { url: "https://prod.spline.design/ZIZAOyFZJ65Ku581/scene.splinecode" }
+        model-viewer {
+            class: "w-screen h-screen",
+            src: "./assets/img/crabflow.glb",
+            ar: true,
+            "ar-modes": "webxr scene-viewer quick-look",
+            "camera-controls": true,
+            "tone-mapping": "neutral",
+            poster: "poster.webp",
+            "shadow-intensity": "1"
+        }
+        // spline-viewer { url: "https://prod.spline.design/ZIZAOyFZJ65Ku581/scene.splinecode" }
     }
 }
 
