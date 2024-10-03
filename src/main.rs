@@ -3,7 +3,6 @@ use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 
 pub const TAILWIND_STYLE: &str = asset!("./assets/tailwind.css");
-// pub const MODEL_STYLE: &str = asset!("./assets/styles.css");
 
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
@@ -22,16 +21,10 @@ fn main() {
 
 fn App() -> Element {
     rsx! {
-        //     <meta name="description" content="&lt;model-viewer&gt; template">
-        // <meta name="viewport" content="width=device-width, initial-scale=1">
-        head::Meta { name: "description", content: "&lt;model-viewer&gt; template" }
-        // head::Meta{ name:"viewport", content:"width=device-width, initial-scale=1"}
-        head::Link { rel: "stylesheet", href: TAILWIND_STYLE }
 
-        // head::Link { rel: "stylesheet", href: MODEL_STYLE }
-        // Script{src:"./assets/script.js"}
+        head::Meta { name: "description", content: "&lt;model-viewer&gt; template" }
+        head::Link { rel: "stylesheet", href: TAILWIND_STYLE }
         Script { src: "https://cdn.tailwindcss.com" }
-        // Script { type: "module", src: "https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js" }
         Script { type: "module", src: "https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.js" }
         // Script { src: "./assets/model-viewer.min.js" }
         Router::<Route> {}
@@ -67,14 +60,6 @@ fn Home() -> Element {
             poster: "poster.webp",
             "shadow-intensity": "1"
         }
-        // spline-viewer { url: "https://prod.spline.design/ZIZAOyFZJ65Ku581/scene.splinecode" }
+
     }
 }
-
-// div { class: "progress-bar", slot: "progress-bar",
-//     div { class: "update-bar" }
-// }
-// button { slot: "ar-button", id: "ar-button", "View in your space" }
-// div { id: "ar-prompt",
-//     img { src: "ar_hand_prompt.png" }
-// }
