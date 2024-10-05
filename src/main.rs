@@ -3,6 +3,7 @@ use dioxus::prelude::*;
 use dioxus_logger::tracing::{info, Level};
 
 pub const TAILWIND_STYLE: &str = asset!("./assets/tailwind.css");
+pub const CRAB: &str = asset!("./assets/img/crab3d.glb");
 
 #[derive(Clone, Routable, Debug, PartialEq)]
 enum Route {
@@ -21,12 +22,13 @@ fn main() {
 
 fn App() -> Element {
     rsx! {
-
         head::Meta { name: "description", content: "&lt;model-viewer&gt; template" }
         head::Link { rel: "stylesheet", href: TAILWIND_STYLE }
         Script { src: "https://cdn.tailwindcss.com" }
-        Script { type: "module", src: "https://unpkg.com/@google/model-viewer@3.5.0/dist/model-viewer.js" }
-        // Script { src: "./assets/model-viewer.min.js" }
+        Script {
+            r#type: "module",
+            src: "https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+        }
         Router::<Route> {}
     }
 }
@@ -41,25 +43,19 @@ fn Blog(id: i32) -> Element {
 
 #[component]
 fn Home() -> Element {
-    let test_style = r#"    
-        model-viewer {
-            width: 400px;
-            height: 600px;
-            margin: 0 auto;
-        }"#;
-
     rsx! {
-        style { r#type: "text/tailwindcss", "{test_style}" }
-        model-viewer {
-            class: "w-screen h-screen",
-            src: "./assets/img/crabflow.glb",
-            ar: "",
-            "ar-modes": "webxr scene-viewer quick-look",
-            "camera-controls": "",
-            "tone-mapping": "neutral",
-            poster: "poster.webp",
-            "shadow-intensity": "1"
+        // style { r#type: "text/tailwindcss", "{test_style}" }
+        div { class: "w-screen h-screen",
+            model-viewer {
+                class: "w-screen h-screen",
+                src: "{CRAB}",
+                ar: "",
+                "ar-modes": "webxr scene-viewer quick-look",
+                "camera-controls": "",
+                "tone-mapping": "neutral",
+                poster: "poster.webp",
+                "shadow-intensity": "1"
+            }
         }
-
     }
 }
